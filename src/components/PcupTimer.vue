@@ -99,7 +99,8 @@ export default {
   width: 100vw; /* ページ全体の幅 */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* 左寄せに変更 */
+  padding-left: 5vw; /* 画面幅の25%だけ左から余白を作って視覚的に中央に */
   margin: 0;
   overflow: hidden;
 }
@@ -107,7 +108,7 @@ export default {
 .timer-display {
   font-weight: bold;
   color: black;
-  text-align: center;
+  text-align: left;
   background-color: rgba(255, 255, 255, 0.7); /* 背景を半透明に */
   padding: 2vw 4vw; /* パディングも可変に */
   border-radius: 1vw; /* 角の丸みも可変に */
