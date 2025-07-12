@@ -1,6 +1,6 @@
 <template>
   <div class="timer-container" :style="{ backgroundColor: backgroundColor }" @click="handleClick">
-    <div class="timer-display">
+    <div class="timer-display" :style="{ fontSize: fontSize }">
       <span>{{ time.toFixed(1) }}</span>
     </div>
   </div>
@@ -22,9 +22,22 @@ export default {
       timerInterval: null,
       backgroundColor: "blue", // 初期背景色
       audio: null, // 音声ファイルの参照
+      fontSize: "10kvw", // 動的フォントサイズ
     };
   },
+  mounted() {
+    this.updateFontSize();
+    window.addEventListener('resize', this.updateFontSize);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateFontSize);
+  },
   methods: {
+    updateFontSize() {
+      const screenWidth = window.innerWidth;
+      const fontSize = screenWidth * 0.2; // 画面幅の20%
+      this.fontSize = fontSize + 'px';
+    },
     handleClick(event) {
       const pageHeight = window.innerHeight;
       if (event.clientY < pageHeight / 2) {
@@ -68,6 +81,7 @@ export default {
     handleThresholdReached() {
       this.playSound(); // 音声を再生
       // 他の処理が必要であればここに追加可能
+      this.backgroundColor = "blue"; // 閾値に達したときの背景色
     },
     playSound() {
       if (!this.audio) {
@@ -91,7 +105,6 @@ export default {
 }
 
 .timer-display {
-  font-size: 15vw; /* ビューポート幅の15%で可変サイズ */
   font-weight: bold;
   color: black;
   text-align: center;
