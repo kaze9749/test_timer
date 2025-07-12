@@ -35,7 +35,7 @@ export default {
   methods: {
     updateFontSize() {
       const screenWidth = window.innerWidth;
-      const fontSize = screenWidth * 0.2; // 画面幅の20%
+      const fontSize = screenWidth * 0.35; // 画面幅の35%
       this.fontSize = fontSize + 'px';
     },
     handleClick(event) {
